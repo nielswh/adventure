@@ -40,9 +40,10 @@ func roomChanged(x, y):
 				s.position.y = rand_range((roomHeight * y) + 32, ((roomHeight * y) + roomHeight) - 32)
 		
 		room[x][y] = 'Discovered'
-		print('new room')"
+		print('new room')
+"
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = SubResource( 1 )
 
