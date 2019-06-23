@@ -29,7 +29,7 @@ func _process(delta):
 		var playerNode = get_node('../player')
 		var distanceToPlayer = playerNode.global_position.distance_to(global_position); 
 		
-		if (distanceToPlayer < maxDistance):
+		if (distanceToPlayer < maxDistance  && playerNode.useMagnet):
 			rotate(get_angle_to(playerNode.position) * rotateSpin * delta)
 			var speed = (maxDistance - distanceToPlayer) / 2.0
 			var direction = (playerNode.position - position).normalized()
@@ -42,7 +42,6 @@ func bodyEntered(body):
 		isFound = true
 		body.keys += 1
 		effect.start()
-		
 		
 
 func _on_effect_tween_completed(object, key):
