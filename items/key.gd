@@ -7,9 +7,12 @@ onready var sprite = get_node('Sprite')
 var maxDistance = 100.0
 var rotateSpin = 2.5
 var isFound = false
+var player = null
 
 func _ready():
 	connect("body_entered", self, "bodyEntered")
+	
+	$Sprite/AnimationPlayer.play('spin')
 	
 	effect.interpolate_property(sprite, 'scale', sprite.transform.get_scale(),
 		Vector2(0.0, 0.0), 0.4, 
@@ -41,8 +44,11 @@ func bodyEntered(body):
 	if (body.name == 'player'):
 		isFound = true
 		body.keys += 1
+		body.shocked = true
+		player = body
 		effect.start()
 		
 
 func _on_effect_tween_completed(object, key):
+	player.shocked = false
 	queue_free()
