@@ -7,9 +7,10 @@ func _ready():
 	$area.connect("body_entered", self, "bodyEntered")
 	
 func bodyEntered(body):
+	
 	if body.name == 'player' && body.keys > 0:
 		body.keys -= 1
-		
+		print(body.doorVector)
 		effect.interpolate_property(sprite, "position", sprite.position, body.doorVector, 1.5, 
         Tween.TRANS_LINEAR, Tween.EASE_OUT)
 		effect.start()

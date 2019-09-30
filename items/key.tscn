@@ -3,12 +3,9 @@
 [ext_resource path="res://items/key.gd" type="Script" id=1]
 [ext_resource path="res://Assets/key.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.47462, 7.60596 )
-
 [sub_resource type="Animation" id=2]
 resource_name = "spin"
-length = 2.4
+length = 2.3
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -23,6 +20,9 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.47462, 7.60596 )
+
 [node name="key" type="Area2D" groups=[
 "keys",
 ]]
@@ -33,10 +33,13 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 12
-frame = 8
+frame = 11
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/spin = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -45,8 +48,4 @@ __meta__ = {
 }
 
 [node name="effect" type="Tween" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite")
-anims/spin = SubResource( 2 )
 [connection signal="tween_completed" from="effect" to="." method="_on_effect_tween_completed"]

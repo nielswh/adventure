@@ -14,14 +14,6 @@ func _ready():
 	
 	$Sprite/AnimationPlayer.play('spin')
 	
-	effect.interpolate_property(sprite, 'scale', sprite.transform.get_scale(),
-		Vector2(0.0, 0.0), 0.4, 
-		Tween.TRANS_QUAD, Tween.EASE_OUT)
-		
-	effect.interpolate_property(sprite, 'modulate', Color(1, 1, 1, 1), 
-		Color(1, 1, 1, 0), 0.4,
-		Tween.TRANS_QUAD, Tween.EASE_OUT)
-	
 func _process(delta):
 		
 	var pos = global_position - Vector2(0,0)
@@ -44,11 +36,20 @@ func bodyEntered(body):
 	if (body.name == 'player'):
 		isFound = true
 		body.keys += 1
-		body.shocked = true
+		body.currentState = "shocked"
 		player = body
+
+		effect.interpolate_property(sprite, 'scale', sprite.transform.get_scale(),
+			Vector2(0.0, 0.0), 0.4, 
+			Tween.TRANS_QUAD, Tween.EASE_OUT)
+		
+		effect.interpolate_property(sprite, 'modulate', Color(1, 1, 1, 1), 
+			Color(1, 1, 1, 0), 0.4,
+			Tween.TRANS_QUAD, Tween.EASE_OUT)
+
 		effect.start()
 		
 
 func _on_effect_tween_completed(object, key):
-	player.shocked = false
+	player.currentState = "default"
 	queue_free()
