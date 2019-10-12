@@ -167,6 +167,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 156, 157, 158, 159, 160, 161, 162, 163 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../hitbox/hitCollision:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 4.416 ), Vector2( 1, 4.416 ), Vector2( -9, 4.416 ), Vector2( -8.5, 4.416 ), Vector2( -8.5, 4.416 ), Vector2( -9, 4.416 ), Vector2( -7, 4.416 ), Vector2( 0, 4.416 ) ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "attackRight"
@@ -260,7 +272,7 @@ tracks/0/keys = {
 extents = Vector2( 7.97756, 10.7672 )
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 6.49152, 10.9384 )
+extents = Vector2( 6.49152, 9.6448 )
 
 [node name="Player" type="KinematicBody2D"]
 light_mask = 0
@@ -276,7 +288,7 @@ texture = ExtResource( 2 )
 normal_map = SubResource( 1 )
 vframes = 16
 hframes = 13
-frame = 59
+frame = 163
 region_enabled = true
 region_rect = Rect2( 0, 0, 416, 512 )
 
@@ -319,3 +331,6 @@ shadow_color = Color( 0, 0, 0, 1 )
 [node name="hitCollision" type="CollisionShape2D" parent="hitbox"]
 position = Vector2( 0, 4.416 )
 shape = SubResource( 17 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 1, 5 )
